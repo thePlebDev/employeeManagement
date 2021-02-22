@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,10 +24,11 @@ public class Order {
 	private Status status;
 	// need to put an arrayList here
 	@OneToMany(
-			mappedBy="order",
+			
 			cascade=CascadeType.ALL,
 			orphanRemoval = true
 			)
+	@JoinColumn(name="order_id")
 	private List<Item> item = new ArrayList<>();
 	
 	
@@ -58,8 +60,11 @@ public class Order {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	public void setItems(List<Item> item) {
-		this.item = item;
+	public void addItem(Item item) {
+		this.item.add(item);
+	}
+	public void removeItem(Item item) {
+		this.item.remove(item);
 	}
 
 	

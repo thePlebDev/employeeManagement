@@ -18,12 +18,18 @@ public class Item {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String name;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="order_id") //sets a foreign key called order_id
 	private Order order;
 	
-	public Item(String name) {
+	public Item(String name, Order order) {
 		this.name = name;
+		this.order = order;
+	}
+	
+	public Item() {
+		
 	}
 	
 	public void setName(String name) {
@@ -32,4 +38,5 @@ public class Item {
 	public String getName() {
 		return name;
 	}
+
 }
