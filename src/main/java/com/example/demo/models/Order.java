@@ -6,17 +6,18 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
-@Entity
-@Table(name="order")
+@Entity(name="order") // this is the name that we have to use for queries
+@Table(name="order")// this is the name of our table in the database
 public class Order {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	private Long customerId;
@@ -43,7 +44,7 @@ public class Order {
 	public Long getCustomerid() {
 		return customerId;
 	}
-	public ArrayList<Long> getItemids() {
+	public List<Item> getItemids() {
 		return itemId;
 	}
 	public Status getStatus() {
@@ -57,7 +58,7 @@ public class Order {
 	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
 	}
-	public void addItem(Long itemId) {
+	public void addItem(Item itemId) {
 		this.itemId.add(itemId);
 	}
 	public void setStatus(Status status) {
