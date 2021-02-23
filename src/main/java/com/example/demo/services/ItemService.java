@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.exception.ItemNotFoundException;
 import com.example.demo.models.Item;
@@ -35,6 +36,7 @@ public class ItemService {
 		return item;
 	}
 	
+	@Transactional
 	public Item editItem(Item item,Long id) {
 		Item itemToEdit = getItem(id);
 		itemToEdit.setName(item.getName());

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.models.Item;
 import com.example.demo.models.Order;
@@ -39,18 +40,22 @@ public class OrderService {
 		orderRepository.delete(orderDelete);
 		return orderDelete;
 	}
+	@Transactional
 	 public Order addItemToOrder(Long itemId,Long orderId) {
 		 Item addedItem = itemService.getItem(itemId);
 		 Order orderToAdd = getOrder(orderId);
 		 orderToAdd.addItem(addedItem);
 		 return orderToAdd; 
 	 }
-	 public Order editStatus(Long id, Order order) {
+	 
+	 @Transactional
+	 public Order editDetails(Long id, Order order) {
 		 Order orderToEdit = getOrder(id);
 		 orderToEdit.setDetails(order.getDetails());
 		 return orderToEdit;
 	 }
 	 
+	 @Transactional
 	 public Order removeItemFromOrder(Long orderId, Long itemId) {
 		 Item item = itemService.getItem(itemId);
 		 Order order = getOrder(orderId);
