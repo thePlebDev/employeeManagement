@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.exception.ItemNotFoundException;
 import com.example.demo.models.Item;
 import com.example.demo.repository.ItemRepository;
 
@@ -26,7 +27,18 @@ public class ItemService {
 	}
 	public Item getItem(Long id) {
 		return itemRepository.findById(id)
-				.orElseThrow(()-> )
+				.orElseThrow(()->new ItemNotFoundException(id) );
+	}
+	public Item deleteItem(Long id) {
+		Item item = getItem(id);
+		itemRepository.delete(item);
+		return item;
+	}
+	
+	public Item editItem(Item item,Long id) {
+		Item itemToEdit = getItem(id);
+		itemToEdit.setName(item.getName());
+		return itemToEdit;
 	}
 
 }
