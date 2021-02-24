@@ -40,7 +40,7 @@ public class ItemController {
 		return itemService.getItem(id);
 		
 	}
-	@DeleteMapping(value="{id")
+	@DeleteMapping(value="{id}")
 	public Item deleteItem(@PathVariable final Long id) {
 		return itemService.deleteItem(id);
 	}

@@ -25,7 +25,6 @@ public class Item {
 	
 	public Item(String name, Order order) {
 		this.name = name;
-		this.order = order;
 	}
 	
 	public Item() {}
