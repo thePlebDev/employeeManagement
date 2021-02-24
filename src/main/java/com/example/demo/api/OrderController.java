@@ -16,7 +16,7 @@ import com.example.demo.models.Order;
 import com.example.demo.services.OrderService;
 
 @RestController
-@RequestMapping("/api/vi/order")
+@RequestMapping("/api/v1/order")
 public class OrderController {
 	
 	private final OrderService orderService;
@@ -50,8 +50,8 @@ public class OrderController {
 	}
 	@PostMapping(value="{orderId}/{itemId}/add")
 	public Order addItemToOrder(@PathVariable final Long orderId,
-								@PathVariable final Long itemid) {
-		return orderService.addItemToOrder(itemid, orderId);
+								@PathVariable final Long itemId) {
+		return orderService.addItemToOrder(itemId, orderId);
 		
 	}
 	@DeleteMapping(value="{orderId}/items/{itemId}/remove")
