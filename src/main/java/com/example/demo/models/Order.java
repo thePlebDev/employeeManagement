@@ -24,15 +24,13 @@ public class Order {
 	private Long id;
 	private Long customerId; // we can make this a one to one relationship;
 	private String details;
-	private String status;
 	// need to put an arrayList here
 	@OneToMany(mappedBy="order",cascade=CascadeType.ALL,orphanRemoval = true)
 	private List<Item> item = new ArrayList<>();
 	
 	
 
-	public Order( String details, Long itemId) {
-		this.status = Status.getProcessing();
+	public Order( String details) {
 		this.details = details;
 	}
 	public Order() {}
@@ -47,17 +45,11 @@ public class Order {
 	public String getDetails() {
 		return details;
 	}
-	public String getStatus() {
-		return status;
-	}
 	
 	// BELOW ARE THE SETTERS
 	
 	public void setDetails(String details) {
 		this.details = details;
-	}
-	public void setStatus(String status) {
-		this.status = status;
 	}
 	public void addItem(Item item) {
 		this.item.add(item);

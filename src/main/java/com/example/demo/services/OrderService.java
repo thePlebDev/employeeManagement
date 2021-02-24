@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.models.Item;
 import com.example.demo.models.Order;
-import com.example.demo.models.Status;
 import com.example.demo.repository.OrderRepository;
 import com.example.demo.exception.ItemIsAlreadyAssignedException;
 import com.example.demo.exception.OrderNotFoundException;
