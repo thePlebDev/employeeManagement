@@ -28,8 +28,10 @@ public class Item {
 		this.order = order;
 	}
 	
-	public Item() {
-		
+	public Item() {}
+	
+	public Order getOrder() {
+		return order;
 	}
 	
 	public void setName(String name) {

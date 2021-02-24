@@ -24,11 +24,11 @@ public class Order {
 	private Status status;
 	// need to put an arrayList here
 	@OneToMany(
-			
+			mappedBy="order",
 			cascade=CascadeType.ALL,
 			orphanRemoval = true
 			)
-	@JoinColumn(name="order_id")
+	
 	private List<Item> item = new ArrayList<>();
 	
 	

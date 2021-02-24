@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import com.example.demo.models.Item;
 import com.example.demo.models.Order;
 import com.example.demo.models.Status;
 import com.example.demo.repository.OrderRepository;
+import com.example.demo.exception.ItemIsAlreadyAssignedException;
 import com.example.demo.exception.OrderNotFoundException;
 
 @Service
@@ -43,6 +45,10 @@ public class OrderService {
 	@Transactional
 	 public Order addItemToOrder(Long itemId,Long orderId) {
 		 Item addedItem = itemService.getItem(itemId);
+		 if(Objects.nonNull(addedItem.getOrder())) {
+			 // this makes it impossible to steal an item and put it in another order
+			 throw new ItemIsAlreadyAssignedException(itemId, addedItem.getOrder().getId());
+		 }
 		 Order orderToAdd = getOrder(orderId);
 		 orderToAdd.addItem(addedItem);
 		 return orderToAdd; 
